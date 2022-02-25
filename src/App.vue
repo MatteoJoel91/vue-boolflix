@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <MyHeader></MyHeader>
+    <MyHeader>
+ 
+    </MyHeader>    <h1>cc</h1> 
     <MyMain></MyMain>
     <MyFooter></MyFooter>
     
@@ -34,10 +36,10 @@ export default {
   
   methods:{
     getFilm(){
-      axios.get('https://flynn.boolean.careers/exercises/api/array/music')
+      axios.get('https://api.themoviedb.org/3/search/movie?api_key=9cebc562ed1232cc2dd23bfe6f97bc80&query=star-wars&language=it-IT')
         .then((response) => {
             // handle success
-            this.listaFilm = response.data.response;
+            this.listaFilm = response.data.results;
             console.log(response);
             console.log(this.listaFilm);
     })
@@ -49,8 +51,12 @@ export default {
       // always executed
     });
     }
+  },
+  created(){
+    this.getFilm();
   }
 }
+
 </script>
 
 <style lang="scss">
