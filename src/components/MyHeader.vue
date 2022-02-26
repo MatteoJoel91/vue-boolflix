@@ -1,12 +1,21 @@
 <template>
     <div>
-        header
+        
     </div>
 </template>
 
 <script>
 export default {
     name: 'MyHeader',
+    data(){
+        return{
+            
+        }
+    },
+
+    methods:{
+        
+    }
 }
 </script>
 

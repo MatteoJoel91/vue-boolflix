@@ -1,10 +1,18 @@
 <template>
   <div id="app">
-    <MyHeader>
- 
-    </MyHeader>    <h1>cc</h1> 
-    <MyMain></MyMain>
-    <MyFooter></MyFooter>
+    <MyHeader />
+    <MyMain />
+      <input type="text" v-model="cercaFilm"> 
+      <button @click="effettuaRicerca">ricerca</button>
+
+      <ul v-for="(film, index) in listaFilm" :key="index">
+          <li>Titolo: {{film.title}}</li>
+          <li>Titolo originale: {{film.original_title}}</li>
+          <li>Lingua originale: {{film.original_language}}</li>
+          <li>Voto: {{film.vote_average}}</li><br>
+      </ul>
+     
+    <MyFooter />
     
   </div>
 </template>
@@ -22,8 +30,8 @@ export default {
 
   data(){
     return{
-        listaFilm: [],
-        cercaFilm: '',
+        cercaFilm:'',      
+        listaFilm: [],       
     }
   },
 
@@ -35,8 +43,8 @@ export default {
   },
   
   methods:{
-    getFilm(){
-      axios.get('https://api.themoviedb.org/3/search/movie?api_key=9cebc562ed1232cc2dd23bfe6f97bc80&query=star-wars&language=it-IT')
+    getFilm(text){
+      axios.get(`https://api.themoviedb.org/3/search/movie?api_key=9cebc562ed1232cc2dd23bfe6f97bc80&query=${text}&language=it-IT`)
         .then((response) => {
             // handle success
             this.listaFilm = response.data.results;
@@ -50,11 +58,15 @@ export default {
     .then(function () {
       // always executed
     });
-    }
+    },
+
+    effettuaRicerca() {
+      this.getFilm(this.cercaFilm);
+    },
   },
-  created(){
-    this.getFilm();
-  }
+  // created(){
+  //   this.getFilm();
+  // }
 }
 
 </script>
