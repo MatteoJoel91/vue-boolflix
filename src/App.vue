@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <MyHeader />
-    <MyMain />
-      <input type="text" v-model="cercaFilm"> 
-      <button @click="effettuaRicerca">ricerca</button>
+    <MyHeader @ricerca='effettuaRicerca' />
+    <MyMain :listaFilmProps="listaFilm"/>
+      <!-- <input type="text" v-model="cercaFilm"> 
+      <button @click="effettuaRicerca">ricerca</button> -->
 
-      <ul v-for="(film, index) in listaFilm" :key="index">
+      <!-- <ul v-for="(film, index) in listaFilm" :key="index">
           <li>Titolo: {{film.title}}</li>
           <li>Titolo originale: {{film.original_title}}</li>
           <li>Lingua originale: {{film.original_language}}</li>
           <li>Voto: {{film.vote_average}}</li><br>
-      </ul>
+      </ul> -->
      
     <MyFooter />
     
@@ -50,18 +50,13 @@ export default {
             this.listaFilm = response.data.results;
             console.log(response);
             console.log(this.listaFilm);
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    })
-    .then(function () {
-      // always executed
-    });
+      })
     },
 
-    effettuaRicerca() {
+    effettuaRicerca(valore) {
+      this.cercaFilm = valore;
       this.getFilm(this.cercaFilm);
+      this.cercaFilm = "";
     },
   },
   // created(){
