@@ -3,6 +3,7 @@ import App from './App.vue'
 import LangFlag from 'vue-lang-code-flags';
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
+import "bootstrap/dist/css/bootstrap.min.css"
  
 Vue.component('lang-flag', LangFlag);
 
@@ -11,3 +12,5 @@ Vue.config.productionTip = false
 new Vue({
   render: h => h(App),
 }).$mount('#app')
+
+import "bootstrap/dist/js/bootstrap.js"
