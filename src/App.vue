@@ -107,7 +107,7 @@ export default {
   @import "./assets/style/variabili.scss";
   #app{
     background-color: #141414;
-    width: 100vw;
+
     min-height: 100vh;
   }
 </style>

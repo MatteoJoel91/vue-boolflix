@@ -52,7 +52,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-    h1{
-        margin-top: 40px;
-    }
+   
 </style>
