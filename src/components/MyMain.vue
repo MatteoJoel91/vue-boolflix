@@ -1,19 +1,23 @@
 <template>
     <div class="container text-white ms-background">
         
-            <div class="row test">
+            <div class="row">
                 <h1>LISTA FILM</h1>
                 <div class="col-lg-3" v-for="(film, index) in listaFilmProps" :key="index">
                     <div class="flip-card">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
-                                <img class="img-fluid test" :src="`https://image.tmdb.org/t/p/w342/${film.poster_path}`" alt="">
+                                <img class="ms-img-fluid" :src="`https://image.tmdb.org/t/p/w342/${film.poster_path}`" alt="">
                             </div>
                             <div class="flip-card-back">
+                                
                                 <ul>
-                                    <li>Titolo: {{film.title}}</li>
-                                    <li>Titolo originale: {{film.original_title}}</li>
-                                    <li>Lingua originale: <lang-flag :iso="film.original_language" /></li><br>
+                                    
+                                    <li class="text-center fs-3 lh-1 pt-2">{{film.title}}</li>
+                                    <li class="text-center pt-3">{{film.original_title}}</li>
+                                    <li class="text-center pt-3"><lang-flag :iso="film.original_language" /></li>
+                                    <li class="text-center pt-3">Trama</li>
+                                    <li class="trama">{{film.overview}}</li>
                                     <!-- <li>Voto: <i class="fa-solid fa-star"  v-for="(number, index) in votiInteriProps" :key="index"></i></li><br> -->
                                 </ul>
                             </div>
@@ -22,27 +26,31 @@
                 </div>
             </div>
 
-        <br>
+            <br>
 
-        
-        <div class="row justify-content-center">
-            <h1>LISTA SERIE TV</h1>
-            <div class="col-lg-3" v-for="(serie) in listaSerieProps" :key="serie.id">
-                <div class="ms-container-cards">
-                    <img class="ms-img-fluid" :src="`https://image.tmdb.org/t/p/w342/${serie.poster_path}`" alt="">
+            <div class="row">
+                <h1>LISTA SERIE TV</h1>
+                <div class="col-lg-3" v-for="(serie, index) in listaSerieProps" :key="index">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img class="ms-img-fluid" :src="`https://image.tmdb.org/t/p/w342/${serie.poster_path}`" alt="">
+                            </div>
+                            <div class="flip-card-back">
+                                
+                                <ul>
+                                    <li class="text-center fs-3 lh-1 pt-2">{{serie.name}}</li>
+                                    <li class="text-center pt-3">{{serie.original_name}}</li>
+                                    <li class="text-center pt-3"><lang-flag :iso="serie.original_language" /></li>
+                                    <!-- <li>Voto: <i class="fa-solid fa-star"></i></li> -->
+                                    <li class="text-center pt-3">Trama</li>
+                                    <li class="trama">{{serie.overview}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>  
                 </div>
-                
-                <div class="ms-container-cards ms-none">
-                    <ul>
-                        <li>Titolo: {{serie.name}}</li>
-                        <li>Titolo originale: {{serie.original_name}}</li>
-                        <li>Lingua originale: <lang-flag :iso="serie.original_language" /></li>
-                        <li>Voto: <i class="fa-solid fa-star"></i></li><br>
-                    </ul>
-                </div>
-                
             </div>
-        </div>
     </div>
 </template>
 
@@ -68,6 +76,7 @@ export default {
 
 <style scoped lang="scss">
     .ms-background{
+        min-height: 400px;
         background-color: #141414;
         h1{
             font-size: 60px;
@@ -79,46 +88,64 @@ export default {
         }
     }
 
-    .test{
-        margin: 20px;
-    }
+ 
     .flip-card {
         background-color: transparent;
-        width: 300px;
-        height: 300px;
-        perspective: 1000px;
-    }
-
-    .flip-card-inner {
-        position: relative;
         width: 100%;
-        height: 100%;
-        text-align: center;
-        transition: transform 0.6s;
-        transform-style: preserve-3d;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        min-height: 450px;
+        perspective: 1000px;
+        margin: 12px 0px;
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+            .flip-card-front, .flip-card-back {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+            }
+
+            .flip-card-front {
+                background-color: #bbb;
+                color: black;
+                width: 100%;
+                height: 450px;
+            }
+
+            .flip-card-back {
+                background-color: black;
+                color: white;
+                transform: rotateY(180deg);
+                width: 100%;
+                height: 450px;
+                overflow-y: auto;
+
+                ul{
+                    padding: 0px 20px;
+                    
+                    li{
+                        list-style: none;
+                    }
+                    .trama{
+                        text-align: justify;
+                    }
+                }
+                
+                
+            }
+        }
     }
 
     .flip-card:hover .flip-card-inner {
         transform: rotateY(180deg);
     }
 
-    .flip-card-front, .flip-card-back {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-    }
-
-    .flip-card-front {
-        background-color: #bbb;
-        color: black;
-    }
-
-    .flip-card-back {
-        background-color: black;
-        color: white;
-        transform: rotateY(180deg);
-    }
+    
 </style>
