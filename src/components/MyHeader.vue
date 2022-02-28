@@ -30,7 +30,7 @@ export default {
     .ms-container{
         width: 100%;
         height: 100px;
-        padding: 0 20px 0 20px;
+        padding: 0 40px 0 40px;
         background-color: #b00707;
 
         img{
