@@ -11,7 +11,7 @@
                             <li class="text-center fs-3 lh-1 pt-2">{{serieProps2.name}}</li>
                             <li class="text-center pt-3">{{serieProps2.original_name}}</li>
                             <li class="text-center pt-3"><lang-flag :iso="serieProps2.original_language" /></li>
-                            <!-- <li>Voto: <i class="fa-solid fa-star"></i></li> -->
+                            <li class="text-center pt-3"><i class="fa-star" v-for="(number, index) in 5" :key="index" :class="(number <= getVote()) ? 'fa-solid yellow-star' : 'fa-regular'"></i></li>
                             <li class="text-center pt-3">Trama</li>
                             <li class="trama">{{serieProps2.overview}}</li>
                         </ul>
@@ -25,6 +25,12 @@
 export default {
     name: 'SerieList',
     props: ['serieProps2'],
+
+    methods: {
+        getVote(){
+            return Math.ceil(this.serieProps2.vote_average / 2);
+        }
+    }
 }
 </script>
 
@@ -41,7 +47,9 @@ export default {
             cursor: pointer;
         }
     }
-
+    .yellow-star{
+        color: yellow;
+    }
  
     .flip-card {
         background-color: transparent;

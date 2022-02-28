@@ -6,15 +6,14 @@
                         <img class="ms-img-fluid" :src="`https://image.tmdb.org/t/p/w342/${filmProps2.poster_path}`" alt="">
                     </div>
                     <div class="flip-card-back">
-                        
+
                         <ul>
-                            
                             <li class="text-center fs-3 lh-1 pt-2">{{filmProps2.title}}</li>
                             <li class="text-center pt-3">{{filmProps2.original_title}}</li>
                             <li class="text-center pt-3"><lang-flag :iso="filmProps2.original_language" /></li>
+                            <li class="text-center pt-3"><i class="fa-star" v-for="(number, index) in 5" :key="index" :class="(number <= getVote()) ? 'fa-solid yellow-star' : 'fa-regular'"></i></li>
                             <li class="text-center pt-3">Trama</li>
-                            <li class="trama">{{filmProps2.overview}}</li>
-                            <!-- <li>Voto: <i class="fa-solid fa-star"  v-for="(number, index) in votiInteriProps" :key="index"></i></li><br> -->
+                            <li class="trama">{{filmProps2.overview}}</li>     
                         </ul>
                     </div>
                 </div>
@@ -25,8 +24,16 @@
 <script>
 export default {
     name: 'FilmList',
-    props: ['filmProps2']
+    props: ['filmProps2'],
+
+    methods: {
+        getVote(){
+            return Math.ceil(this.filmProps2.vote_average / 2);
+        }
+    }
 }
+
+    
 </script>
 
 <style scoped lang="scss">
@@ -42,7 +49,9 @@ export default {
             cursor: pointer;
         }
     }
-
+    .yellow-star{
+        color: yellow;
+    }
  
     .flip-card {
         background-color: transparent;

@@ -2,7 +2,7 @@
     <div class="container text-white ms-background">
         
             <div class="row">
-                <h1>LISTA FILM</h1>
+                <h1 v-if="listaFilmProps.length > 0">LISTA FILM</h1>
                     <FilmList 
                         v-for="(film, index) in listaFilmProps" 
                         :key="index"
@@ -13,7 +13,7 @@
             <br>
 
             <div class="row">
-                <h1>LISTA SERIE TV</h1>
+                <h1 v-if="listaSerieProps.length > 0">LISTA SERIE TV</h1>
                     <SerieList
                         v-for="(serie, index) in listaSerieProps" 
                         :key="index"
