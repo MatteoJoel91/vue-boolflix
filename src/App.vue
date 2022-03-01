@@ -34,13 +34,9 @@ export default {
 
   data(){
     return{
-        cercaFilm:'',      
+        cerca:'',      
         listaFilm: [],
-        listaSerie:[],
-        voti:[],
-        votoDiviso: '',
-        votiInteri:[],
-        
+        listaSerie:[],        
     }
   },
 
@@ -58,14 +54,6 @@ export default {
             // handle success
             this.listaFilm = response.data.results;
             console.log(this.listaFilm);
-            for (let i = 0; i < this.listaFilm.length; i++) {
-              this.voti.push(this.listaFilm[i].vote_average)
-            }
-            for (let j = 0; j < this.voti.length; j++) {
-                  this.votoDiviso = parseInt(this.voti[j] / 2);
-                  this.votiInteri.push(this.votoDiviso);
-            }
-            console.log(this.votiInteri);
       })
     },
 
@@ -75,22 +63,14 @@ export default {
             // handle success
             this.listaSerie = response.data.results;
             console.log(this.listaSerie);
-            // for (let i = 0; i < this.listaSerie.length; i++) {
-            //   this.voti.push(this.listaSerie[i].vote_average)
-            // }
-            // for (let j = 0; j < this.voti.length; j++) {
-            //       this.votoDiviso = parseInt(this.voti[j] / 2);
-            //       this.votiInteri.push(this.votoDiviso);
-            // }
-            // console.log(this.votiInteri);
       })
     },
 
     effettuaRicerca(valore) {
-      this.cercaFilm = valore;
-      this.getFilm(this.cercaFilm);
-      this.getSerie(this.cercaFilm);
-      this.cercaFilm = "";
+      this.cerca = valore;
+      this.getFilm(this.cerca);
+      this.getSerie(this.cerca);
+      this.cerca = "";
     },
 
 

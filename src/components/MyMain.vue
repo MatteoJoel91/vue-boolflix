@@ -32,7 +32,6 @@ export default {
     name: 'MyMain',
     props: ['listaFilmProps',
             'listaSerieProps',
-            'votiInteriProps',
             ] ,
     
     data(){

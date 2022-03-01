@@ -2,7 +2,7 @@
     <div class="ms-container d-flex align-items-center justify-content-between"> 
         <img src="http://www.cartoonmag.it/wp-content/uploads/2017/05/netflix-logo-1024x597.png" alt="">
         <div>
-            <input type="text" placeholder="Cerca qualcosa..." v-model="cercaFilm"> 
+            <input type="text" placeholder="Cerca qualcosa..." v-model="cerca"> 
             <button @click="faiRicerca">RICERCA</button>
         </div>
     </div>
@@ -13,14 +13,14 @@ export default {
     name: 'MyHeader',
     data(){
         return{
-            cercaFilm: '',
+            cerca: '',
         }
     },
 
     methods:{
         faiRicerca(){
-            console.log(this.cercaFilm);
-            this.$emit('ricerca', this.cercaFilm)
+            console.log(this.cerca);
+            this.$emit('ricerca', this.cerca)
         }
     }
 }
