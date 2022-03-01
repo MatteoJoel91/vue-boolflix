@@ -21,6 +21,7 @@ export default {
         faiRicerca(){
             console.log(this.cerca);
             this.$emit('ricerca', this.cerca)
+            this.cerca = '';
         }
     }
 }

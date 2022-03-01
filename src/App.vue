@@ -34,7 +34,7 @@ export default {
 
   data(){
     return{
-        cerca:'',      
+        cerca:'',     
         listaFilm: [],
         listaSerie:[],        
     }
@@ -51,18 +51,18 @@ export default {
     getFilm(text){
       axios.get(`https://api.themoviedb.org/3/search/movie?api_key=9cebc562ed1232cc2dd23bfe6f97bc80&query=${text}&language=it-IT`)
         .then((response) => {
-            // handle success
-            this.listaFilm = response.data.results;
-            console.log(this.listaFilm);
+          // handle success
+          this.listaFilm = response.data.results;
+          console.log(this.listaFilm);
       })
     },
 
     getSerie(text){
       axios.get(`https://api.themoviedb.org/3/search/tv?api_key=9cebc562ed1232cc2dd23bfe6f97bc80&query=${text}&language=it-IT`)
         .then((response) => {
-            // handle success
-            this.listaSerie = response.data.results;
-            console.log(this.listaSerie);
+          // handle success
+          this.listaSerie = response.data.results;
+          console.log(this.listaSerie);
       })
     },
 
@@ -70,9 +70,7 @@ export default {
       this.cerca = valore;
       this.getFilm(this.cerca);
       this.getSerie(this.cerca);
-      this.cerca = "";
     },
-
 
   },
   // created(){
